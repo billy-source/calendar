@@ -65,6 +65,7 @@
   
   <script>
     function showAttendeeInfo(event) {
+      event.preventDefault();
       document.getElementById("Attendee").style.display = "block";
       document.getElementById("showAttendeeBtn").style.display = "none";
     }
@@ -83,13 +84,14 @@
       };
 
   
-      const events = JSON.parse(localStorage.getItem("events"));
+      let events = JSON.parse(localStorage.getItem("events")) || [];
       events.push(event);
       localStorage.setItem("events", JSON.stringify(events));
 
-      alert(" You have successfully added an Event!");
+     
       
       document.getElementById("Attendee").style.display = "none";
+      alert("You have successfully added an event!")
     
     });
   </script>
@@ -97,7 +99,7 @@
   
 
   <script>
-    const events = JSON.parse(localStorage.getItem("events"));
+    const events = JSON.parse(localStorage.getItem("events")) || [];
     const tableBody = document.querySelector("#eventsTable tbody");
 
     events.forEach((event, index) => {
